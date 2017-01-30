@@ -7,8 +7,6 @@ after_success:
 - npm run test:cover:travis
 deploy:
   provider: s3
-  edge:
-    branch: s3-backward-compat
   access_key_id: AKIAITRJ6ACY5DFWC7VA
   bucket: hackufrontendstartertest
   region: us-west-2
