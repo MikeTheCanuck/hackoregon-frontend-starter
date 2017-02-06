@@ -5,10 +5,14 @@ node_js:
 - '6.1'
 after_success:
 - npm run test:cover:travis
+script:
+- npm run build
 deploy:
   provider: s3
   access_key_id: AKIAIAWOAIPOMJYNCS2Q
-  bucket: hackufrontendstartertest
-  region: us-west-2
   secret_access_key:
     secure: gA8njc3VNvGvRapmj/CYIGz8H5Z3bRvi67bsVkH6IGkFjkqYpqf6J+TEORM6i+qwRqq/XJmXOyO0YDH3y4ckodjPRKjsB5XgZ7YHO09YmzJ9i/5/xsKGUq/Srq5sRxjdoYemS0GxtngpuJMj9nkzv+NycZYQzgAioMFQAKgP9yWYdeAkP+9lzr0xcItkIW1u6A9EeGdQrr1CFC9KNb2UfRSbMAskSerzyEgO9ytWk7Za9pc3/KcYlFXNCq7gYZVGQBiHY9vv830k9d1xgbuo2UUxX9mLlTCneqenb9uQ5WCeGR6TEoG2dTZApQrqPnrgfnsffI8/BC6UBJvALk8+DEUDLlBZTcHqa6qkxhBeZ1pJh88bH4ydwJiyN40C39Dt0bsAUp536/8c+TWbAz0uGXQGR446tYe5buIXpJqIW/2KSF0n6UK1ewTKSFs/KqUyH4OdiHB/wvZDvCs/xGjyWNUG8/PtKif9KIZJAFwDDpVp4cdZxjekjGFx4QJADHNbFtclRXkt9xCFcxF4xHY3Jz7YJWK3h4W1xg9uMmiWrw7X7YQMt+q1daRXG+OAj2hlKycSTN0VVLm5BW5qU8FpXa6slTxzFlLFRLCwxY944fHU8EmKfLr10+CwIW0GpzpVf5luUDzRXAhDYFw14IlesiQ3nbLbOegxQV0la7+xZM8=
+  local_dir: build
+  bucket: hackufrontendstartertest
+  region: us-west-2
+  skip_cleanup: true

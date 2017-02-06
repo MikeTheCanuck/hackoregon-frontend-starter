@@ -6,6 +6,8 @@ const { resolve } = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 
+const commitSha = require('child_process').execSync('git rev-parse --short HEAD').toString().trim();
+
 module.exports = {
   resolve: {
     extensions: ['', '.js', '.json'],
@@ -38,12 +40,11 @@ module.exports = {
         removeEmptyAttributes: true,
         removeStyleLinkTypeAttributes: true,
         keepClosingSlash: true,
-        minifyJS: true,
         minifyCSS: true,
         minifyURLs: true,
       },
       inject: true,
-      commitSha: 'a234dasd',
+      commitSha,
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
@@ -78,7 +79,7 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel' },
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel?presets[]=es2015' },
       { test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'url?name=[name].[ext]' },
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&mimetype=application/font-woff&name=[name].[ext]' },
       { test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream&name=[name].[ext]' },
